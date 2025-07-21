@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                       String    @id @default(uuid())
+  name                     String?
+  email                    String    @unique
+  password                 String
+  role                     String    @default("user")
+  webSearchEnabled         Boolean   @default(true)
+  extendedReasoningEnabled Boolean   @default(false)  // 👈 DODAJ TĘ LINIĘ
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+  chats                    Chat[]
+  projects                 Project[]
+}
+
+model Chat {
+  id              String     @id @default(uuid())
+  title           String     @default("Nowa konwersacja")
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  userId          String
+  activeDocuments String[]
+  user            User       @relation(fields: [userId], references: [id])
+  documents       Document[]
+  messages        Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String   @db.Text 
+  role      String
+  createdAt DateTime @default(now())
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  metadata  Json?    @default("{}")
+  reasoning Json?    // 👈 DODAJ TĘ LINIĘ
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  title     String
+  fileType  String
+  content   String?
+  pages     Int?
+  rows      Int?
+  columns   Int?
+  metadata  Json?    @default("{}")
+  createdAt DateTime @default(now())
+  chatId    String
+  isDefault Boolean  @default(false)
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@index([chatId])
+}
+
+model KnowledgeCategory {
+  id          String              @id @default(cuid())
+  name        String              @unique
+  description String?
+  
+  // Nowe pola dla uprawnień i zabezpieczeń
+  isPublic    Boolean             @default(true)  // Czy kategoria jest publiczna
+  password    String?             // Hasło do kategorii (opcjonalne)
+  createdBy   String              // Email twórcy kategorii
+  createdByName String?           // Nazwa twórcy kategorii
+  
+  documents   KnowledgeDocument[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  
+  @@map("knowledge_categories")
+}
+
+model KnowledgeDocument {
+  id               String   @id @default(cuid())
+  title            String
+  description      String?  // Pole description
+  fileName         String   // Nazwa pliku na serwerze
+  originalFileName String   // Oryginalna nazwa pliku
+  filePath         String   // Ścieżka do pliku
+  fileType         String   // pdf, excel, word, txt
+  fileSize         Int      // Rozmiar w bajtach - pole fileSize
+  content          String?  @db.Text // Wyekstrahowany tekst
+  
+  // Informacje o użytkowniku - pola uploadedBy
+  uploadedBy       String   // Email użytkownika
+  uploadedByName   String?  // Nazwa użytkownika
+  
+  // Relacje
+  categoryId       String
+  category         KnowledgeCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  // Metadata
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  @@map("knowledge_documents")
+}
+
+model Project {
+  id          String        @id @default(uuid())
+  name        String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  userId      String
+  user        User          @relation(fields: [userId], references: [id])
+  tasks       Task[]
+  milestones  Milestone[]
+
+  @@index([userId])
+}
+
+model Task {
+  id           String       @id @default(uuid())
+  name         String
+  description  String?
+  startDate    DateTime
+  endDate      DateTime
+  progress     Int          @default(0) // 0-100%
+  dependencies String[]     // ID zadań, od których zależy
+  projectId    String
+  project      Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  reminderSent Boolean      @default(false)
+
+  @@index([projectId])
+}
+
+model Milestone {
+  id          String       @id @default(uuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  completed   Boolean      @default(false)
+  projectId   String
+  project     Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  reminderSent Boolean     @default(false)
+
+  @@index([projectId])
+}
