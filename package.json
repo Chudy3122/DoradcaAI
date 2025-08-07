@@ -9,7 +9,10 @@
     "lint": "next lint",
     "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
     "create-user": "node scripts/create-user.js",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "db:seed-tests": "node prisma/seed-competency-tests.js",
+    "db:reset": "npx prisma db push --force-reset && npm run db:seed-tests",
+    "auto-test": "node scripts/auto-complete-test.js"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.17",
@@ -49,6 +52,7 @@
     "pdfjs-dist": "^5.1.91",
     "pdfkit": "^0.17.1",
     "pdfreader": "^3.0.7",
+    "puppeteer": "^24.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^9.1.0",

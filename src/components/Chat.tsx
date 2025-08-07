@@ -21,7 +21,7 @@ const Chat: React.FC = () => {
   useEffect(() => {
     const initialMessage: Message = {
       id: uuidv4(),
-      text: "Witaj w MarsoftAI! Jestem asystentem dla projektów UE. Jak mogę Ci pomóc w tworzeniu dokumentacji projektowej?",
+      text: "Witaj w DoradcaAI! Jestem asystentem dla projektów UE. Jak mogę Ci pomóc w tworzeniu dokumentacji projektowej?",
       sender: 'bot',
       timestamp: new Date()
     };
@@ -258,8 +258,8 @@ W czym dokładnie mogę pomóc w związku z tym dokumentem?`);
               <div className="w-8 h-8 rounded-full overflow-hidden bg-blue-100 flex-shrink-0 mr-2">
                 <div className="relative w-full h-full">
                   <Image 
-                    src="/MarsoftAI.png" 
-                    alt="MarsoftAI" 
+                    src="/DoradcaAI.png" 
+                    alt="DoradcaAI" 
                     width={32}
                     height={32}
                     style={{ objectFit: 'cover', width: '100%', height: '100%' }}

@@ -1,145 +1,59 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
-import Navigation from '@/components/Navigation';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import CareerProfile from '../../components/CareerProfile';
 
 export default function ProfilePage() {
-  const { data: session, status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect('/login');
-    },
-  });
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
-  // Używamy opcjonalnego łańcuchowania aby obsłużyć możliwy undefined
-  const [name, setName] = useState(session?.user?.name || '');
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveSuccess, setSaveSuccess] = useState(false);
+  useEffect(() => {
+    if (status === 'loading') return; // Still loading
 
-  if (status === 'loading') {
-    return <div>Ładowanie...</div>;
-  }
-
-  // Jeśli już dotarliśmy tutaj, to sesja powinna istnieć, ale dodajmy dodatkowe sprawdzenie
-  if (!session || !session.user) {
-    redirect('/login');
-    return null; // To nigdy nie zostanie wykonane z powodu przekierowania, ale TypeScript tego wymaga
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSaving(true);
-    setSaveSuccess(false);
-    
-    try {
-      const response = await fetch('/api/user/update', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name }),
-      });
-  
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || 'Nie udało się zapisać zmian');
-      }
-  
-      setSaveSuccess(true);
-    } catch (error) {
-      console.error('Błąd podczas zapisywania profilu:', error);
-    } finally {
-      setIsSaving(false);
+    if (!session) {
+      // Redirect to login if not authenticated
+      router.push('/login');
+      return;
     }
-  };
+  }, [session, status, router]);
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-lg bg-white shadow">
-          <div className="px-4 py-5 sm:px-6">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
-              Profil użytkownika
-            </h3>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              Edytuj swoje dane osobowe i preferencje
-            </p>
-          </div>
-          
-          <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Adres email
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={session.user.email || ''}
-                    disabled
-                    className="block w-full cursor-not-allowed rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-                  />
-                  <p className="mt-1 text-xs text-gray-500">
-                    Adresu email nie można zmienić
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  Imię i nazwisko
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="role" className="block text-sm font-medium text-gray-700">
-                  Rola
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="role"
-                    name="role"
-                    type="text"
-                    value={session.user.role === 'admin' ? 'Administrator' : 'Użytkownik'}
-                    disabled
-                    className="block w-full cursor-not-allowed rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div className="flex justify-end">
-                {saveSuccess && (
-                  <p className="mr-4 self-center text-sm text-green-600">
-                    Zmiany zostały zapisane!
-                  </p>
-                )}
-                <button
-                  type="submit"
-                  disabled={isSaving}
-                  className="inline-flex justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:bg-green-300"
-                >
-                  {isSaving ? 'Zapisywanie...' : 'Zapisz zmiany'}
-                </button>
-              </div>
-            </form>
-          </div>
+  // Show loading while checking authentication
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <h2 className="text-xl font-semibold text-gray-700">Sprawdzam autoryzację...</h2>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  // Show login required if not authenticated
+  if (!session) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4">
+            <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 0h12a2 2 0 002-2v-1a2 2 0 00-2-2H6a2 2 0 00-2 2v1a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">Wymagane logowanie</h2>
+          <p className="text-gray-600 mb-4">Aby wyświetlić profil zawodowy, musisz być zalogowany.</p>
+          <button
+            onClick={() => router.push('/login')}
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Przejdź do logowania
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Render the career profile component
+  return <CareerProfile />;
 }

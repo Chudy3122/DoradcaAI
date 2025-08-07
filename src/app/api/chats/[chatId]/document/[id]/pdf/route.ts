@@ -81,9 +81,9 @@ export async function GET(
     // Ustawienie metadanych
     doc.setProperties({
       title: document.title,
-      subject: 'Dokument wygenerowany przez MarsoftAI',
-      author: session.user.name || 'MarsoftAI',
-      creator: 'MarsoftAI'
+      subject: 'Dokument wygenerowany przez DoradcaAI',
+      author: session.user.name || 'DoradcaAI',
+      creator: 'DoradcaAI'
     });
     
     // Definicja marginesów i wymiarów strony
@@ -110,7 +110,7 @@ export async function GET(
       // Tekst stopki
       doc.setFontSize(8);
       doc.setTextColor(100, 100, 100);
-      const footerText = polishEncoding(`© MarsoftAI - dokument wygenerowany automatycznie`);
+      const footerText = polishEncoding(`© DoradcaAI - dokument wygenerowany automatycznie`);
       doc.text(footerText, margin, pageHeight - 7);
       
       // Numer strony

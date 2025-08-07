@@ -25,11 +25,11 @@ export const generatePdf = async ({
   title,
   content,
   fileName = 'dokument.pdf',
-  author = 'MarsoftAI',
+  author = 'DoradcaAI',
   addTable = false,
   tableData = [],
   tableColumns = [],
-  logoUrl = '/MarsoftAI.png',
+  logoUrl = '/DoradcaAI.png',
 }: GeneratePdfOptions): Promise<Blob> => {
   // Inicjalizacja dokumentu PDF z obsługą polskich znaków
   const doc = new jsPDF({
@@ -47,9 +47,9 @@ export const generatePdf = async ({
   // Ustawienie metadanych
   doc.setProperties({
     title: title,
-    subject: 'Dokument wygenerowany przez MarsoftAI',
+    subject: 'Dokument wygenerowany przez DoradcaAI',
     author: author,
-    creator: 'MarsoftAI',
+    creator: 'DoradcaAI',
     keywords: 'AI, raport, dokument'
   });
   
@@ -94,7 +94,7 @@ export const generatePdf = async ({
     // Tekst stopki
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
-    const footerText = polishEncoding(`© ${new Date().getFullYear()} MarsoftAI - Dokument wygenerowany automatycznie`);
+    const footerText = polishEncoding(`© ${new Date().getFullYear()} DoradcaAI - Dokument wygenerowany automatycznie`);
     doc.text(footerText, margin, pageHeight - 7);
     
     // Numer strony

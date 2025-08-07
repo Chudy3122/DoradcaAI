@@ -19,28 +19,28 @@ export async function GET() {
             name: "Projekty UE",
             description: "Dokumentacja i materiały dotyczące projektów Unii Europejskiej",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
+            createdBy: "system@doradcaai.pl",
             createdByName: "System"
           },
           {
             name: "Wnioski o dofinansowanie",
             description: "Szablony i przykłady wniosków o dofinansowanie",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
+            createdBy: "system@doradcaai.pl",
             createdByName: "System"
           },
           {
             name: "Harmonogramy projektów",
             description: "Przykładowe harmonogramy i planowanie projektów",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
+            createdBy: "system@doradcaai.pl",
             createdByName: "System"
           },
           {
             name: "Budżety i rozliczenia",
             description: "Materiały dotyczące budżetowania i rozliczeń projektów UE",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
+            createdBy: "system@doradcaai.pl",
             createdByName: "System"
           }
         ]

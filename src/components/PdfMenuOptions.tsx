@@ -48,9 +48,9 @@ const PdfMenuOptions: React.FC<PdfMenuOptionsProps> = ({
       // Ustawienie metadanych
       doc.setProperties({
         title: `Konwersacja: ${chatTitle}`,
-        subject: 'Eksport konwersacji z MarsoftAI',
-        author: 'MarsoftAI',
-        creator: 'MarsoftAI'
+        subject: 'Eksport konwersacji z DoradcaAI',
+        author: 'DoradcaAI',
+        creator: 'DoradcaAI'
       });
 
       // Definicja marginesów i wymiarów strony
@@ -67,7 +67,7 @@ const PdfMenuOptions: React.FC<PdfMenuOptionsProps> = ({
         
         doc.setFontSize(16);
         doc.setTextColor(0, 84, 159);
-        doc.text('MarsoftAI - Eksport konwersacji', pageWidth / 2, 15, { align: 'center' });
+        doc.text('DoradcaAI - Eksport konwersacji', pageWidth / 2, 15, { align: 'center' });
         
         doc.setFontSize(10);
         doc.setTextColor(100, 100, 100);
@@ -113,7 +113,7 @@ const PdfMenuOptions: React.FC<PdfMenuOptionsProps> = ({
         if (messageContent === '') continue;
         
         // Dodaj informację o nadawcy i czasie
-        const senderInfo = isBot ? 'MarsoftAI' : 'Użytkownik';
+        const senderInfo = isBot ? 'DoradcaAI' : 'Użytkownik';
         const timestamp = formatDate(message.timestamp);
         
         doc.setFontSize(9);

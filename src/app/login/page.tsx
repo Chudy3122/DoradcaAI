@@ -71,22 +71,23 @@ export default function LoginPage() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%)',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       }}>
         <div style={{ 
           textAlign: 'center',
           padding: '3rem',
-          background: 'rgba(255, 255, 255, 0.05)',
+          background: 'rgba(255, 255, 255, 0.9)',
           backdropFilter: 'blur(20px)',
           borderRadius: '24px',
-          border: '1px solid rgba(163, 205, 57, 0.2)'
+          border: '1px solid rgba(59, 130, 246, 0.2)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
         }}>
           <div style={{
             width: '50px',
             height: '50px',
-            border: '4px solid rgba(163, 205, 57, 0.2)',
-            borderTop: '4px solid #a3cd39',
+            border: '4px solid rgba(59, 130, 246, 0.2)',
+            borderTop: '4px solid #3b82f6',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite',
             margin: '0 auto 1.5rem'
@@ -94,7 +95,7 @@ export default function LoginPage() {
           <p style={{ 
             fontSize: '20px', 
             fontWeight: '600',
-            color: 'white',
+            color: '#1e293b',
             margin: 0
           }}>
             Ładowanie...
@@ -284,13 +285,13 @@ export default function LoginPage() {
         
         .input-focus:focus {
           transform: translateY(-1px);
-          box-shadow: 0 8px 25px rgba(163, 205, 57, 0.25) !important;
-          border-color: #a3cd39 !important;
+          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25) !important;
+          border-color: #3b82f6 !important;
         }
         
         .button-hover:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 12px 25px rgba(163, 205, 57, 0.4);
+          box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
         }
         
         .feature-item {
@@ -299,7 +300,7 @@ export default function LoginPage() {
         
         .feature-item:hover {
           transform: translateX(8px);
-          background: rgba(163, 205, 57, 0.1);
+          background: rgba(59, 130, 246, 0.1);
           border-radius: 12px;
           padding: 8px 12px;
         }
@@ -307,7 +308,7 @@ export default function LoginPage() {
       
       <div style={{ 
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d3748 50%, #1a202c 100%)',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)',
         display: 'flex',
         position: 'relative',
         overflow: 'hidden',
@@ -321,17 +322,17 @@ export default function LoginPage() {
           width: '100%',
           height: '100%',
           zIndex: 0,
-          opacity: 0.05
+          opacity: 0.1
         }}>
           {/* Circuit board pattern */}
           <defs>
             <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M20 20h60v60h-60z" fill="none" stroke="#a3cd39" strokeWidth="0.5"/>
-              <circle cx="20" cy="20" r="2" fill="#a3cd39"/>
-              <circle cx="80" cy="20" r="2" fill="#a3cd39"/>
-              <circle cx="20" cy="80" r="2" fill="#a3cd39"/>
-              <circle cx="80" cy="80" r="2" fill="#a3cd39"/>
-              <path d="M20 20L80 80M80 20L20 80" stroke="#a3cd39" strokeWidth="0.3" opacity="0.5"/>
+              <path d="M20 20h60v60h-60z" fill="none" stroke="#3b82f6" strokeWidth="0.5"/>
+              <circle cx="20" cy="20" r="2" fill="#3b82f6"/>
+              <circle cx="80" cy="20" r="2" fill="#3b82f6"/>
+              <circle cx="20" cy="80" r="2" fill="#3b82f6"/>
+              <circle cx="80" cy="80" r="2" fill="#3b82f6"/>
+              <path d="M20 20L80 80M80 20L20 80" stroke="#3b82f6" strokeWidth="0.3" opacity="0.5"/>
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#circuit)"/>
@@ -341,96 +342,96 @@ export default function LoginPage() {
             className="circuit-line"
             d="M0,50 Q200,20 400,50 T800,50" 
             fill="none" 
-            stroke="#a3cd39" 
+            stroke="#3b82f6" 
             strokeWidth="2" 
             strokeDasharray="10,5"
-            opacity="0.2"
+            opacity="0.3"
           />
           <path 
             className="circuit-line"
             d="M0,150 Q300,120 600,150 T1200,150" 
             fill="none" 
-            stroke="#a3cd39" 
+            stroke="#3b82f6" 
             strokeWidth="1.5" 
             strokeDasharray="8,3"
-            opacity="0.15"
+            opacity="0.2"
             style={{ animationDelay: '3s' }}
           />
         </svg>
         
-        {/* AI Data particles flowing - zmniejszone i bardziej rozproszone */}
+        {/* AI Data particles flowing */}
         <div className="ai-particle" style={{
           position: 'absolute',
           width: '3px',
           height: '3px',
-          background: '#a3cd39',
+          background: '#3b82f6',
           borderRadius: '50%',
           top: '15%',
           left: 0,
           zIndex: 1,
-          boxShadow: '0 0 8px #a3cd39',
+          boxShadow: '0 0 8px #3b82f6',
           opacity: 0.6
         }} />
         <div className="ai-particle" style={{
           position: 'absolute',
           width: '2px',
           height: '2px',
-          background: '#8bc34a',
+          background: '#60a5fa',
           borderRadius: '50%',
           top: '45%',
           left: 0,
           zIndex: 1,
-          boxShadow: '0 0 6px #8bc34a',
+          boxShadow: '0 0 6px #60a5fa',
           opacity: 0.5
         }} />
         <div className="ai-particle" style={{
           position: 'absolute',
           width: '3px',
           height: '3px',
-          background: '#a3cd39',
+          background: '#3b82f6',
           borderRadius: '50%',
           top: '75%',
           left: 0,
           zIndex: 1,
-          boxShadow: '0 0 8px #a3cd39',
+          boxShadow: '0 0 8px #3b82f6',
           opacity: 0.6
         }} />
         
-        {/* Neural network nodes - przesunięte dalej od formularza */}
+        {/* Neural network nodes */}
         <div className="ai-node" style={{
           position: 'absolute',
           width: '8px',
           height: '8px',
-          background: 'radial-gradient(circle, #a3cd39, #8bc34a)',
+          background: 'radial-gradient(circle, #3b82f6, #60a5fa)',
           borderRadius: '50%',
           top: '10%',
           left: '5%',
           zIndex: 1,
-          boxShadow: '0 0 12px #a3cd39',
+          boxShadow: '0 0 12px #3b82f6',
           opacity: 0.4
         }} />
         <div className="ai-node" style={{
           position: 'absolute',
           width: '6px',
           height: '6px',
-          background: 'radial-gradient(circle, #8bc34a, #a3cd39)',
+          background: 'radial-gradient(circle, #60a5fa, #3b82f6)',
           borderRadius: '50%',
           top: '40%',
           left: '8%',
           zIndex: 1,
-          boxShadow: '0 0 10px #8bc34a',
+          boxShadow: '0 0 10px #60a5fa',
           opacity: 0.3
         }} />
         <div className="ai-node" style={{
           position: 'absolute',
           width: '7px',
           height: '7px',
-          background: 'radial-gradient(circle, #a3cd39, #8bc34a)',
+          background: 'radial-gradient(circle, #3b82f6, #60a5fa)',
           borderRadius: '50%',
           top: '80%',
           left: '3%',
           zIndex: 1,
-          boxShadow: '0 0 11px #a3cd39',
+          boxShadow: '0 0 11px #3b82f6',
           opacity: 0.4
         }} />
         
@@ -439,7 +440,7 @@ export default function LoginPage() {
           position: 'absolute',
           width: '2px',
           height: '40px',
-          background: 'linear-gradient(to bottom, transparent, #a3cd39, transparent)',
+          background: 'linear-gradient(to bottom, transparent, #3b82f6, transparent)',
           right: '15%',
           top: 0,
           zIndex: 1
@@ -448,7 +449,7 @@ export default function LoginPage() {
           position: 'absolute',
           width: '1px',
           height: '30px',
-          background: 'linear-gradient(to bottom, transparent, #8bc34a, transparent)',
+          background: 'linear-gradient(to bottom, transparent, #60a5fa, transparent)',
           right: '25%',
           top: 0,
           zIndex: 1
@@ -457,7 +458,7 @@ export default function LoginPage() {
           position: 'absolute',
           width: '2px',
           height: '35px',
-          background: 'linear-gradient(to bottom, transparent, #a3cd39, transparent)',
+          background: 'linear-gradient(to bottom, transparent, #3b82f6, transparent)',
           right: '35%',
           top: 0,
           zIndex: 1
@@ -466,7 +467,7 @@ export default function LoginPage() {
           position: 'absolute',
           width: '1px',
           height: '25px',
-          background: 'linear-gradient(to bottom, transparent, #8bc34a, transparent)',
+          background: 'linear-gradient(to bottom, transparent, #60a5fa, transparent)',
           right: '45%',
           top: 0,
           zIndex: 1
@@ -475,18 +476,18 @@ export default function LoginPage() {
           position: 'absolute',
           width: '2px',
           height: '30px',
-          background: 'linear-gradient(to bottom, transparent, #a3cd39, transparent)',
+          background: 'linear-gradient(to bottom, transparent, #3b82f6, transparent)',
           right: '55%',
           top: 0,
           zIndex: 1
         }} />
         
-        {/* Geometric AI shapes - bardziej subtelne i dalej od formularza */}
+        {/* Geometric AI shapes */}
         <div className="geometric-shape" style={{
           position: 'absolute',
           width: '15px',
           height: '15px',
-          background: 'linear-gradient(45deg, rgba(163, 205, 57, 0.2), rgba(139, 195, 74, 0.1))',
+          background: 'linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(96, 165, 250, 0.2))',
           top: '20%',
           right: '15%',
           zIndex: 1,
@@ -497,7 +498,7 @@ export default function LoginPage() {
           position: 'absolute',
           width: '12px',
           height: '12px',
-          background: 'linear-gradient(60deg, rgba(84, 57, 205, 0.3), rgba(139, 195, 74, 0.1))',
+          background: 'linear-gradient(60deg, rgba(59, 130, 246, 0.4), rgba(96, 165, 250, 0.2))',
           top: '60%',
           right: '25%',
           zIndex: 1,
@@ -508,11 +509,11 @@ export default function LoginPage() {
           position: 'absolute',
           width: '10px',
           height: '10px',
-          background: 'linear-gradient(45deg, rgba(163, 205, 57, 0.1), rgba(139, 195, 74, 0.05))',
+          background: 'linear-gradient(45deg, rgba(59, 130, 246, 0.2), rgba(96, 165, 250, 0.1))',
           top: '85%',
           right: '20%',
           zIndex: 1,
-          border: '1px solid rgba(163, 205, 57, 0.2)',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
           opacity: 0.3
         }} />
 
@@ -522,7 +523,7 @@ export default function LoginPage() {
           position: 'relative',
           zIndex: 2
         }}>
-          {/* Lewa kolumna z formularzem - bez obwódek, jednorodne tło */}
+          {/* Lewa kolumna z formularzem */}
           <div className="form-container" style={{ 
             flex: '1',
             minWidth: '400x',
@@ -531,9 +532,10 @@ export default function LoginPage() {
             flexDirection: 'column',
             justifyContent: 'center',
             padding: '3rem',
-            background: 'rgba(26, 26, 26, 0.9)',
+            background: 'rgba(255, 255, 255, 0.95)',
             backdropFilter: 'blur(20px)',
-            position: 'relative'
+            position: 'relative',
+            borderRight: '1px solid rgba(59, 130, 246, 0.1)'
           }}>
             {/* Animated top border */}
             <div style={{
@@ -542,7 +544,7 @@ export default function LoginPage() {
               left: 0,
               right: 0,
               height: '2px',
-              background: 'linear-gradient(90deg, transparent, #a3cd39, transparent)',
+              background: 'linear-gradient(90deg, transparent, #3b82f6, transparent)',
               animation: 'shimmer 3s ease-in-out infinite'
             }} />
             
@@ -564,28 +566,28 @@ export default function LoginPage() {
                 fontSize: '36px',
                 fontWeight: '800',
                 marginBottom: '8px',
-                color: 'white',
+                color: '#1e293b',
                 letterSpacing: '-0.5px'
               }}>
                 Zaloguj się
               </h1>
               <p className="form-group" style={{ 
                 fontSize: '18px',
-                color: 'rgba(255, 255, 255, 0.7)',
+                color: '#64748b',
                 marginBottom: '2.5rem',
                 fontWeight: '500'
               }}>
-                Asystent dla projektów UE
+                Twój cyfrowy doradca zawodowy
               </p>
 
               {error && (
                 <div style={{ 
                   padding: '16px',
-                  background: 'rgba(220, 53, 69, 0.2)',
+                  background: 'rgba(239, 68, 68, 0.1)',
                   borderRadius: '12px',
-                  color: '#ff6b7a',
+                  color: '#dc2626',
                   marginBottom: '1.5rem',
-                  border: '1px solid rgba(220, 53, 69, 0.3)',
+                  border: '1px solid rgba(239, 68, 68, 0.2)',
                   animation: 'fadeInUp 0.5s ease-out',
                   fontWeight: '500'
                 }}>
@@ -602,7 +604,7 @@ export default function LoginPage() {
                       fontSize: '14px',
                       fontWeight: '600',
                       marginBottom: '8px',
-                      color: 'rgba(255, 255, 255, 0.9)'
+                      color: '#1e293b'
                     }}
                   >
                     Adres Email
@@ -619,10 +621,10 @@ export default function LoginPage() {
                       width: '100%',
                       padding: '16px 20px',
                       borderRadius: '12px',
-                      border: '2px solid rgba(255, 255, 255, 0.1)',
+                      border: '2px solid #e2e8f0',
                       fontSize: '16px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: 'white',
+                      background: '#ffffff',
+                      color: '#1e293b',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       outline: 'none',
                       fontWeight: '500'
@@ -638,7 +640,7 @@ export default function LoginPage() {
                       fontSize: '14px',
                       fontWeight: '600',
                       marginBottom: '8px',
-                      color: 'rgba(255, 255, 255, 0.9)'
+                      color: '#1e293b'
                     }}
                   >
                     Hasło
@@ -655,10 +657,10 @@ export default function LoginPage() {
                       width: '100%',
                       padding: '16px 20px',
                       borderRadius: '12px',
-                      border: '2px solid rgba(255, 255, 255, 0.1)',
+                      border: '2px solid #e2e8f0',
                       fontSize: '16px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: 'white',
+                      background: '#ffffff',
+                      color: '#1e293b',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       outline: 'none',
                       fontWeight: '500'
@@ -679,12 +681,12 @@ export default function LoginPage() {
                     style={{ 
                       marginRight: '10px',
                       transform: 'scale(1.2)',
-                      accentColor: '#a3cd39'
+                      accentColor: '#3b82f6'
                     }}
                   />
                   <label htmlFor="remember" style={{ 
                     fontSize: '14px', 
-                    color: 'rgba(255, 255, 255, 0.7)',
+                    color: '#64748b',
                     cursor: 'pointer',
                     fontWeight: '500'
                   }}>
@@ -700,9 +702,9 @@ export default function LoginPage() {
                     width: '100%',
                     padding: '16px',
                     background: loading 
-                      ? 'rgba(108, 117, 125, 0.5)' 
-                      : 'linear-gradient(135deg, #a3cd39 0%, #8bc34a 100%)',
-                    color: loading ? 'rgba(255, 255, 255, 0.5)' : '#1a1a1a',
+                      ? 'rgba(148, 163, 184, 0.5)' 
+                      : 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)',
+                    color: loading ? 'rgba(100, 116, 139, 0.5)' : '#ffffff',
                     border: 'none',
                     borderRadius: '12px',
                     fontSize: '16px',
@@ -712,7 +714,7 @@ export default function LoginPage() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    boxShadow: loading ? 'none' : '0 0 25px rgba(163, 205, 57, 0.4)',
+                    boxShadow: loading ? 'none' : '0 0 25px rgba(59, 130, 246, 0.4)',
                     position: 'relative',
                     overflow: 'hidden'
                   }}
@@ -740,11 +742,11 @@ export default function LoginPage() {
                 <div style={{ 
                   marginTop: '2rem',
                   padding: '16px',
-                  background: 'rgba(13, 110, 253, 0.2)',
+                  background: 'rgba(59, 130, 246, 0.1)',
                   borderRadius: '12px',
                   fontSize: '14px',
-                  color: '#66b3ff',
-                  border: '1px solid rgba(13, 110, 253, 0.3)',
+                  color: '#3b82f6',
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
                   animation: 'fadeInUp 0.5s ease-out'
                 }}>
                   <p style={{ marginBottom: '8px', fontWeight: '600' }}>
@@ -754,13 +756,13 @@ export default function LoginPage() {
                     whiteSpace: 'pre-wrap', 
                     wordBreak: 'break-all',
                     fontSize: '12px',
-                    background: 'rgba(0, 0, 0, 0.3)',
+                    background: 'rgba(0, 0, 0, 0.05)',
                     padding: '12px',
                     borderRadius: '8px',
-                    border: '1px solid rgba(13, 110, 253, 0.2)',
+                    border: '1px solid rgba(59, 130, 246, 0.1)',
                     maxHeight: '150px',
                     overflow: 'auto',
-                    color: '#99ccff'
+                    color: '#475569'
                   }}>
                     {JSON.stringify(debugInfo, null, 2)}
                   </pre>
@@ -792,21 +794,21 @@ export default function LoginPage() {
                 position: 'relative',
                 margin: '0 auto 2rem auto',
                 borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(163, 205, 57, 0.2) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 animation: 'aiPulse 6s ease-in-out infinite',
-                border: '2px solid rgba(163, 205, 57, 0.3)'
+                border: '2px solid rgba(59, 130, 246, 0.3)'
               }}>
                 <Image
-                  src="/MarsoftAI.png"
-                  alt="MarsoftAI Logo"
+                  src="/DoradcaAI.png"
+                  alt="DoradcaAI Logo"
                   width={160}
                   height={160}
                   style={{ 
                     objectFit: 'contain',
-                    filter: 'drop-shadow(0 0 20px rgba(163, 205, 57, 0.6))'
+                    filter: 'drop-shadow(0 0 20px rgba(59, 130, 246, 0.6))'
                   }}
                   priority
                 />
@@ -815,25 +817,25 @@ export default function LoginPage() {
               <h2 style={{ 
                 fontSize: '42px',
                 fontWeight: '800',
-                color: 'white',
+                color: '#1e293b',
                 marginBottom: '1rem',
                 letterSpacing: '-1px',
                 animation: 'fadeInUp 1s ease-out 0.3s both',
-                textShadow: '0 0 20px rgba(163, 205, 57, 0.3)'
+                textShadow: '0 0 20px rgba(59, 130, 246, 0.3)'
               }}>
-                AI ASYSTENT
+                DORADCA ZAWODOWY AI
               </h2>
               
               <p style={{ 
                 fontSize: '20px',
-                color: 'rgba(255, 255, 255, 0.8)',
-                maxWidth: '400px',
+                color: '#64748b',
+                maxWidth: '500px',
                 marginBottom: '2.5rem',
                 lineHeight: '1.6',
                 fontWeight: '500',
                 animation: 'fadeInUp 1s ease-out 0.4s both'
               }}>
-                Twój inteligentny asystent do tworzenia i zarządzania dokumentacją projektów UE.
+                Spersonalizowane doradztwo zawodowe 24/7. Odkryj swoje predyspozycje i idealną ścieżkę kariery.
               </p>
               
               {/* Funkcje asystenta z tech vibes */}
@@ -843,16 +845,16 @@ export default function LoginPage() {
                 gap: '1rem',
                 textAlign: 'left',
                 padding: '2rem',
-                background: 'rgba(255, 255, 255, 0.05)',
+                background: 'rgba(255, 255, 255, 0.8)',
                 backdropFilter: 'blur(20px)',
                 borderRadius: '20px',
-                boxShadow: '0 0 40px rgba(163, 205, 57, 0.1)',
-                border: '1px solid rgba(163, 205, 57, 0.2)',
+                boxShadow: '0 8px 32px rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
                 animation: 'fadeInUp 1s ease-out 0.5s both'
               }}>
                 <h3 style={{ 
                   fontSize: '18px', 
-                  color: 'white', 
+                  color: '#1e293b', 
                   fontWeight: '700',
                   marginBottom: '1rem',
                   textAlign: 'center'
@@ -861,10 +863,10 @@ export default function LoginPage() {
                 </h3>
                 
                 {[
-                  'Tworzyć profesjonalną dokumentację projektową',
-                  'Analizować i generować harmonogramy', 
-                  'Przygotować budżety i zestawienia finansowe',
-                  'Odpowiadać na pytania o fundusze europejskie'
+                  "Analiza predyspozycji i profilu zawodowego",
+                  "Dopasowane rekomendacje zawodów i edukacji", 
+                  "Symulacje rozmów kwalifikacyjnych i generator CV",
+                  "Przegląd ofert pracy dopasowanych do Ciebie"
                 ].map((feature, index) => (
                   <div 
                     key={index}
@@ -872,27 +874,27 @@ export default function LoginPage() {
                     style={{ 
                       display: 'flex', 
                       alignItems: 'center', 
-                      gap: '12px',
-                      padding: '4px',
+                      gap: '11px',
+                      padding: '1px',
                       animation: `fadeInUp 1s ease-out ${0.6 + index * 0.1}s both`
                     }}
                   >
                     <div style={{ 
                       width: '28px', 
                       height: '28px', 
-                      background: 'linear-gradient(135deg, #a3cd39, #8bc34a)', 
+                      background: 'linear-gradient(135deg, #3b82f6, #60a5fa)', 
                       borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: '0 0 15px rgba(163, 205, 57, 0.5)'
+                      boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)'
                     }}>
-                      <span style={{ color: '#1a1a1a', fontSize: '14px', fontWeight: 'bold' }}>✓</span>
+                      <span style={{ color: '#ffffff', fontSize: '14px', fontWeight: 'bold' }}>✓</span>
                     </div>
                     <span style={{ 
                       fontSize: '15px', 
-                      color: 'rgba(255, 255, 255, 0.9)',
+                      color: '#475569',
                       fontWeight: '500'
                     }}>
                       {feature}
@@ -911,14 +913,14 @@ export default function LoginPage() {
           width: '100%',
           textAlign: 'center', 
           padding: '1rem',
-          background: 'rgba(0, 0, 0, 0.3)',
+          background: 'rgba(255, 255, 255, 0.9)',
           backdropFilter: 'blur(10px)',
-          color: 'rgba(255, 255, 255, 0.6)',
+          color: '#64748b',
           fontSize: '14px',
-          borderTop: '1px solid rgba(163, 205, 57, 0.2)',
+          borderTop: '1px solid rgba(59, 130, 246, 0.2)',
           fontWeight: '500'
         }}>
-          &copy; {new Date().getFullYear()} MarsoftAI - Wszelkie prawa zastrzeżone
+          &copy; {new Date().getFullYear()} DoradcaAI - Inteligentne doradztwo zawodowe
         </div>
       </div>
     </>

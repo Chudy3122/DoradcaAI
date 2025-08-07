@@ -19,43 +19,43 @@ export async function GET() {
             name: "Projekty UE",
             description: "Dokumentacja i materiały dotyczące projektów Unii Europejskiej",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
-            createdByName: "System MarsoftAI"
+            createdBy: "system@doradcaai.pl",
+            createdByName: "System DoradcaAI"
           },
           {
             name: "Wnioski o dofinansowanie",
             description: "Szablony i przykłady wniosków o dofinansowanie ze środków UE",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
-            createdByName: "System MarsoftAI"
+            createdBy: "system@doradcaai.pl",
+            createdByName: "System DoradcaAI"
           },
           {
             name: "Dokumentacja projektowa",
             description: "Dokumenty projektowe, specyfikacje i wymagania",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
-            createdByName: "System MarsoftAI"
+            createdBy: "system@doradcaai.pl",
+            createdByName: "System DoradcaAI"
           },
           {
             name: "Raporty i analizy",
             description: "Raporty z realizacji projektów i analizy finansowe",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
-            createdByName: "System MarsoftAI"
+            createdBy: "system@doradcaai.pl",
+            createdByName: "System DoradcaAI"
           },
           {
             name: "Harmonogramy projektów",
             description: "Plany czasowe i harmonogramy realizacji projektów",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
-            createdByName: "System MarsoftAI"
+            createdBy: "system@doradcaai.pl",
+            createdByName: "System DoradcaAI"
           },
           {
             name: "Budżety i rozliczenia",
             description: "Budżety projektów, kosztorysy i dokumenty rozliczeniowe",
             isPublic: true,
-            createdBy: "system@marsoft.pl",
-            createdByName: "System MarsoftAI"
+            createdBy: "system@doradcaai.pl",
+            createdByName: "System DoradcaAI"
           }
         ]
       });

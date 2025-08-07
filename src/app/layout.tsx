@@ -11,8 +11,8 @@ import { authOptions } from "@/lib/auth";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'MarsoftAI - Asystent projektów UE',
-  description: 'Inteligentny asystent dla projektów UE',
+  title: 'DoradcaAI - Inteligentny Asystent Zawodowy',
+  description: 'Inteligentny asystent zawodowy',
 };
 
 export default async function RootLayout({

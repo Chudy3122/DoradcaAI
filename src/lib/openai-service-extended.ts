@@ -2,7 +2,6 @@
 import OpenAI from 'openai';
 import { 
   openai, 
-  getDocumentsContent, 
   improveMarkdownFormatting 
 } from './openai-service';
 
@@ -23,41 +22,41 @@ export interface ExtendedResponse {
 }
 
 /**
- * System prompt dla rozszerzonego myślenia
+ * System prompt dla rozszerzonego myślenia w kontekście doradztwa zawodowego
  */
-const getExtendedReasoningSystemPrompt = (enableWebSearch: boolean, hasDocuments: boolean): string => {
-  return `Jesteś zaawansowanym asystentem AI o nazwie MarsoftAI z możliwością rozszerzonego myślenia.
+const getExtendedReasoningSystemPrompt = (enableWebSearch: boolean): string => {
+  return `Jesteś zaawansowanym Doradcą Zawodowym AI z możliwością głębokiego myślenia analitycznego.
 
 TRYB ROZSZERZONEGO MYŚLENIA:
-Gdy użytkownik zadaje pytanie, najpierw przedstaw swój proces myślowy w strukturze JSON, a następnie podaj finalną odpowiedź.
+Gdy użytkownik zadaje pytanie dotyczące kariery, najpierw przedstaw szczegółowy proces myślowy w strukturze JSON, a następnie podaj finalną poradę.
 
-STRUKTURA PROCESU MYŚLOWEGO:
+STRUKTURA PROCESU MYŚLOWEGO DLA DORADZTWA ZAWODOWEGO:
 \`\`\`json
 {
   "reasoning_process": {
     "steps": [
       {
         "id": "1",
-        "title": "Analiza problemu",
-        "content": "Szczegółowe zrozumienie pytania, identyfikacja kluczowych elementów",
+        "title": "Analiza sytuacji zawodowej",
+        "content": "Zrozumienie pytania użytkownika, identyfikacja kluczowych aspektów kariery",
         "type": "analysis"
       },
       {
         "id": "2", 
-        "title": "Planowanie podejścia",
-        "content": "Określenie strategii rozwiązania, jakie informacje są potrzebne",
+        "title": "Ocena możliwości i ścieżek",
+        "content": "Określenie dostępnych opcji kariery, analizy mocnych stron i obszarów rozwoju",
         "type": "planning"
       },
       {
         "id": "3",
-        "title": "Wykonanie analizy",
-        "content": "Krok po kroku rozwiązywanie problemu, analiza danych",
+        "title": "Analiza rynku i trendów",
+        "content": "Ocena aktualnej sytuacji na rynku pracy, perspektyw branżowych",
         "type": "execution"
       },
       {
         "id": "4",
-        "title": "Weryfikacja i synteza",
-        "content": "Sprawdzenie poprawności, połączenie wyników w spójną całość",
+        "title": "Synteza rekomendacji",
+        "content": "Połączenie analizy w konkretne, praktyczne kroki rozwoju kariery",
         "type": "verification"
       }
     ]
@@ -65,36 +64,41 @@ STRUKTURA PROCESU MYŚLOWEGO:
 }
 \`\`\`
 
-TYPY KROKÓW:
-- "analysis": Analiza problemu, zrozumienie kontekstu
-- "planning": Planowanie strategii rozwiązania  
-- "execution": Wykonanie konkretnych działań/analiz
-- "verification": Weryfikacja wyników i synteza
+TYPY KROKÓW MYŚLOWYCH:
+- "analysis": Analiza sytuacji zawodowej, kompetencji, predyspozycji
+- "planning": Planowanie ścieżek kariery, identyfikacja możliwości
+- "execution": Analiza rynku pracy, trendów, wymagań zawodowych
+- "verification": Weryfikacja i synteza w praktyczne rekomendacje
 
-ZASADY PROCESU MYŚLOWEGO:
-1. Każdy krok powinien być konkretny i szczegółowy
-2. Używaj minimum 3, maksimum 6 kroków
-3. Dostosuj liczbę kroków do złożoności problemu
-4. W każdym kroku wyjaśnij swoje rozumowanie
-5. Pokazuj jak dochodzisz do wniosków
+ZASADY PROCESU MYŚLOWEGO W DORADZTWIE:
+1. Każdy krok powinien dotyczyć aspektów zawodowych
+2. Używaj 3-6 kroków w zależności od złożoności sytuacji zawodowej
+3. Analizuj kompetencje, możliwości, bariery i szanse
+4. Uwzględniaj trendy rynkowe i wymagania pracodawców
+5. Pokazuj logikę dochodzenia do rekomendacji zawodowych
+
+OBSZARY ANALIZY:
+🎯 Predyspozycje i talenty
+📊 Kompetencje obecne vs wymagane
+🎓 Potrzeby edukacyjne i rozwojowe
+💼 Możliwości na rynku pracy
+📈 Perspektywy rozwoju kariery
+💰 Aspekty finansowe i benefity
 
 ${enableWebSearch 
-  ? `🌐 WYSZUKIWANIE: Masz dostęp do internetu - wykorzystuj aktualne dane.`
-  : `🌐 WYSZUKIWANIE: Wyłączone - używaj tylko własnej wiedzy.`}
+  ? `🌐 DOSTĘP DO INTERNETU: Używaj aktualnych danych o rynku pracy, trendach, ofertach.`
+  : `🌐 BRAK INTERNETU: Bazuj na swojej wiedzy o zawodach i rynku pracy.`}
 
-${hasDocuments 
-  ? `📚 DOKUMENTY: Masz dostęp do dokumentów - analizuj je w pierwszej kolejności.`
-  : ''}
+FORMATOWANIE KOŃCOWEJ PORADY:
+Po przedstawieniu procesu myślowego podaj praktyczne rekomendacje:
+- **## Rekomendacje zawodowe**
+- **### Następne kroki**
+- **### Zasoby i możliwości**
+- Używaj list punktowych (-) dla konkretnych działań
+- **Pogrubienia** dla kluczowych pojęć zawodowych
+- Tabele dla porównań opcji kariery
 
-FORMATOWANIE KOŃCOWEJ ODPOWIEDZI:
-Po przedstawieniu procesu myślowego podaj finalną odpowiedź w formacie Markdown:
-- Używaj nagłówków (## ###)
-- Listy punktowane (-) i numerowane (1.)
-- Pogrubienia (**tekst**)
-- Kod w backtickach
-- Tabele gdy potrzebne
-
-Twoja specjalizacja to projekty UE i dokumentacja, ale odpowiadasz na wszystkie rozsądne pytania.`;
+Twoja specjalizacja to profesjonalne doradztwo zawodowe i planowanie kariery.`;
 };
 
 /**
@@ -160,7 +164,7 @@ function parseReasoningResponse(response: string): ExtendedResponse {
 }
 
 /**
- * Główna funkcja z rozszerzonym myśleniem
+ * Główna funkcja z rozszerzonym myśleniem dla doradztwa zawodowego
  */
 export async function getOpenAIResponseWithExtendedReasoning(
   prompt: string,
@@ -169,66 +173,55 @@ export async function getOpenAIResponseWithExtendedReasoning(
   enableExtendedReasoning: boolean = false
 ): Promise<ExtendedResponse> {
   try {
-    console.log("🧠 === START getOpenAIResponseWithExtendedReasoning ===");
+    console.log("🧠 === START Doradca Zawodowy - Rozszerzone Myślenie ===");
     console.log(`📝 Prompt: "${prompt.substring(0, 100)}${prompt.length > 100 ? '...' : ''}"`);
-    console.log(`📚 DocumentIds: ${documentIds.length}`);
     console.log(`🌐 WebSearch: ${enableWebSearch}`);
     console.log(`🧠 ExtendedReasoning: ${enableExtendedReasoning}`);
 
-    // Pobierz kontekst dokumentów
-    let documentsContext = "";
-    if (documentIds.length > 0) {
-      console.log(`📚 Pobieranie treści ${documentIds.length} dokumentów...`);
-      documentsContext = await getDocumentsContent(documentIds);
-      console.log(`📊 Otrzymano kontekst dokumentów: ${documentsContext.length} znaków`);
-    }
-
     // Przygotuj system prompt
     const systemPrompt = enableExtendedReasoning 
-      ? getExtendedReasoningSystemPrompt(enableWebSearch, documentsContext.length > 0)
-      : getStandardSystemPrompt(enableWebSearch, documentsContext.length > 0);
+      ? getExtendedReasoningSystemPrompt(enableWebSearch)
+      : getStandardCareerAdvisorPrompt(enableWebSearch);
 
-    // Przygotuj prompt użytkownika z kontekstem
-    let userPromptWithContext = prompt;
+    // Przygotuj prompt użytkownika z kontekstem zawodowym
+    let userPromptWithContext = `💼 PYTANIE DOTYCZĄCE KARIERY I ROZWOJU ZAWODOWEGO:
+${prompt}`;
     
-    if (documentsContext) {
-      userPromptWithContext = `📋 DOKUMENTY REFERENCYJNE:
-${documentsContext}
+    if (enableExtendedReasoning) {
+      userPromptWithContext += `
 
-💬 PYTANIE UŻYTKOWNIKA: ${prompt}
+📋 INSTRUKCJA:
+Najpierw przedstaw szczegółowy proces myślowy w formacie JSON, analizując tę sytuację zawodową krok po kroku. Następnie podaj finalną poradę z konkretnymi rekomendacjami dla rozwoju kariery.`;
+    } else {
+      userPromptWithContext += `
 
-${enableExtendedReasoning 
-  ? 'Najpierw przedstaw swój proces myślowy w formacie JSON, a następnie podaj finalną odpowiedź.' 
-  : 'Odpowiedz na pytanie bazując na dostarczonych dokumentach.'}`;
-    } else if (enableExtendedReasoning) {
-      userPromptWithContext = `${prompt}
-
-Przedstaw swój proces myślowy w formacie JSON, a następnie podaj finalną odpowiedź.`;
+📋 INSTRUKCJA:
+Odpowiedz jako profesjonalny doradca zawodowy, skupiając się na praktycznych poradach dotyczących kariery i rozwoju zawodowego.`;
     }
 
-    console.log(`📝 Wysyłam zapytanie do OpenAI (Extended: ${enableExtendedReasoning})`);
+    console.log(`📝 Wysyłam zapytanie do Doradcy Zawodowego AI (Extended: ${enableExtendedReasoning})`);
 
-    // Wywołanie OpenAI
+    // Wywołanie OpenAI z parametrami dostosowanymi do doradztwa
     const response = await openai.chat.completions.create({
       model: "gpt-4o-2024-08-06",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPromptWithContext }
       ],
-      temperature: enableExtendedReasoning ? 0.3 : 0.7,
+      temperature: enableExtendedReasoning ? 0.3 : 0.7, // Niższa temperatura dla analizy
       max_tokens: enableExtendedReasoning ? 6000 : 4096
     });
 
-    const rawResponse = response.choices[0]?.message?.content || "Przepraszam, nie udało się wygenerować odpowiedzi.";
+    const rawResponse = response.choices[0]?.message?.content || "Przepraszam, nie udało się przeanalizować Twojej sytuacji zawodowej.";
     
-    console.log(`✅ Otrzymano odpowiedź od OpenAI (${rawResponse.length} znaków)`);
+    console.log(`✅ Otrzymano odpowiedź od Doradcy Zawodowego AI (${rawResponse.length} znaków)`);
 
     // Parsuj odpowiedź w zależności od trybu
     if (enableExtendedReasoning) {
       const parsedResponse = parseReasoningResponse(rawResponse);
-      console.log(`🧠 Proces myślowy: ${parsedResponse.reasoning ? 'ZNALEZIONY' : 'BRAK'}`);
+      console.log(`🧠 Proces myślowy zawodowy: ${parsedResponse.reasoning ? 'ZNALEZIONY' : 'BRAK'}`);
       if (parsedResponse.reasoning) {
-        console.log(`🧠 Liczba kroków: ${parsedResponse.reasoning.steps.length}`);
+        console.log(`🧠 Liczba kroków analizy: ${parsedResponse.reasoning.steps.length}`);
       }
       return parsedResponse;
     } else {
@@ -238,51 +231,58 @@ Przedstaw swój proces myślowy w formacie JSON, a następnie podaj finalną odp
     }
 
   } catch (error) {
-    console.error('❌ === BŁĄD getOpenAIResponseWithExtendedReasoning ===');
+    console.error('❌ === BŁĄD Doradca Zawodowy - Rozszerzone Myślenie ===');
     console.error('❌ Szczegóły:', error);
     
     return {
-      response: "Przepraszam, wystąpił błąd podczas przetwarzania Twojego zapytania. Spróbuj ponownie później."
+      response: "Przepraszam, wystąpił błąd podczas analizowania Twojej sytuacji zawodowej. Jako doradca zawodowy polecam spróbować ponownie z bardziej szczegółowym opisem."
     };
   }
 }
 
 /**
- * Standardowy system prompt (dla trybu bez rozszerzonego myślenia)
+ * Standardowy system prompt dla doradcy zawodowego
  */
-function getStandardSystemPrompt(enableWebSearch: boolean, hasDocuments: boolean): string {
-  return `Jesteś pomocnym i wszechstronnym asystentem AI o nazwie MarsoftAI.
+function getStandardCareerAdvisorPrompt(enableWebSearch: boolean): string {
+  return `Jesteś profesjonalnym Doradcą Zawodowym AI specjalizującym się w planowaniu kariery i rozwoju zawodowym.
 
-Twoje główne kompetencje:
-- Specjalizujesz się w projektach UE i dokumentacji projektowej
-- Potrafisz odpowiadać na szeroki zakres pytań z różnych dziedzin
-- Analizujesz dokumenty i dane
-- Pomagasz w programowaniu, naukach, biznesie i wielu innych obszarach
+TWOJE GŁÓWNE KOMPETENCJE:
+- 🎯 Analiza predyspozycji i talentów zawodowych
+- 📊 Rekomendacje zawodów i ścieżek kariery  
+- 🎓 Doradztwo edukacyjne (studia, kursy, szkolenia)
+- 💼 Przygotowanie do rozmów kwalifikacyjnych
+- 📋 Pomoc w tworzeniu CV i listów motywacyjnych
+- 💰 Informacje o rynku pracy i zarobkach
+- 🏢 Analiza branż i sektorów gospodarki
+- 📈 Planowanie rozwoju kariery
 
 ${enableWebSearch 
-  ? `🌐 WYSZUKIWANIE W INTERNECIE: WŁĄCZONE`
-  : `🌐 WYSZUKIWANIE W INTERNECIE: WYŁĄCZONE`}
-
-${hasDocuments 
-  ? `**WAŻNE: Masz dostęp do dokumentów referencyjnych. Bazuj na nich w pierwszej kolejności przy odpowiadaniu na pytania.**`
-  : ''}
+  ? `🌐 DOSTĘP DO INTERNETU: Masz dostęp do aktualnych danych o rynku pracy i trendach zawodowych.`
+  : `🌐 BRAK INTERNETU: Korzystasz z własnej wiedzy o zawodach i rynku pracy.`}
 
 FORMATOWANIE ODPOWIEDZI (Markdown):
-1. Listy punktowane: używaj myślników (-) w nowych liniach
-2. Listy numerowane: 1., 2., itd. w nowych liniach  
-3. Nagłówki: ## dla głównych sekcji, ### dla podsekcji
-4. Pogrubienia: **tekst** dla ważnych terminów
-5. Wydzielaj sekcje pustymi liniami
+1. **## Nagłówki** dla głównych sekcji
+2. **### Podsekcje** dla szczegółów
+3. **- Listy punktowane** dla konkretnych działań
+4. **1. Listy numerowane** dla kroków
+5. **Pogrubienia** dla kluczowych terminów zawodowych
+
+STRUKTURA PORAD (gdy możliwe):
+1. **Ocena sytuacji**
+2. **Rekomendacje zawodowe**  
+3. **Następne kroki**
+4. **Zasoby i możliwości**
 
 ZASADY:
-- Odpowiadaj dokładnie i rzetelnie
-- Dostosuj ton do charakteru pytania  
-- Jeśli nie znasz odpowiedzi, powiedz to szczerze
-- Zachowaj profesjonalizm i życzliwość`;
+- Zawsze myśl z perspektywy rozwoju kariery
+- Dostarczaj konkretne, praktyczne porady
+- Uwzględniaj aktualne trendy rynkowe
+- Bądź pozytywny i motywujący
+- Jeśli nie znasz danych, powiedz szczerze`;
 }
 
 /**
- * Analiza PDF z rozszerzonym myśleniem
+ * Analiza PDF z rozszerzonym myśleniem zawodowym
  */
 export async function analyzePdfWithExtendedReasoning(
   pdfText: string, 
@@ -293,49 +293,41 @@ export async function analyzePdfWithExtendedReasoning(
   enableExtendedReasoning: boolean = false
 ): Promise<ExtendedResponse> {
   try {
-    // Pobierz treść dokumentów z biblioteki, jeśli są
-    let documentsContext = "";
-    if (documentIds.length > 0) {
-      documentsContext = await getDocumentsContent(documentIds);
-    }
+    const context = `📄 ANALIZA DOKUMENTU ZAWODOWEGO:
 
-    // Połącz kontekst PDF i dokumentów z biblioteki
-    let fullContext = `
-## Analizowany dokument PDF:
-- Tytuł: ${pdfMetadata.title || 'Nieznany'}
-- Liczba stron: ${pdfMetadata.pages || 'Nieznana'}
+**Dokument:** ${pdfMetadata.title || 'Dokument PDF'}
+**Strony:** ${pdfMetadata.pages || 'Nieznana liczba'}
 
-### Zawartość dokumentu (fragment):
-${pdfText.substring(0, 3000)}...
-`;
+**Zawartość do analizy:**
+${pdfText.substring(0, 3000)}${pdfText.length > 3000 ? '...' : ''}
 
-    if (documentsContext) {
-      fullContext += `\n## Dodatkowe dokumenty referencyjne:\n${documentsContext}`;
-    }
+---
 
-    fullContext += `\n## Na podstawie powyższej zawartości, odpowiedz na pytanie:\n${query}`;
-    
-    if (enableExtendedReasoning) {
-      fullContext += `\n\nPrzedstaw swój proces myślowy w formacie JSON, a następnie podaj finalną odpowiedź.`;
-    }
+💼 **PYTANIE DORADCZE:**
+${query}
+
+📋 **ZADANIE:**
+${enableExtendedReasoning 
+  ? 'Przeanalizuj ten dokument pod kątem zawodowym używając głębokiego procesu myślowego. Najpierw przedstaw analizę w formacie JSON, następnie podaj praktyczne rekomendacje.'
+  : 'Przeanalizuj dokument z perspektywy doradcy zawodowego i podaj praktyczne rekomendacje dla rozwoju kariery.'}`;
     
     return await getOpenAIResponseWithExtendedReasoning(
-      fullContext, 
+      context, 
       [], 
       enableWebSearch, 
       enableExtendedReasoning
     );
     
   } catch (error) {
-    console.error('Błąd podczas analizy PDF z rozszerzonym myśleniem:', error);
+    console.error('Błąd podczas analizy PDF przez doradcę zawodowego:', error);
     return {
-      response: "Przepraszam, wystąpił błąd podczas analizy dokumentu. Spróbuj ponownie później."
+      response: "Przepraszam, wystąpił błąd podczas analizy dokumentu. Jako doradca zawodowy polecam przesłać dokument ponownie lub zadać pytanie w inny sposób."
     };
   }
 }
 
 /**
- * Analiza Excel z rozszerzonym myśleniem
+ * Analiza Excel z rozszerzonym myśleniem zawodowym
  */
 export async function analyzeExcelWithExtendedReasoning(
   excelText: string, 
@@ -346,47 +338,45 @@ export async function analyzeExcelWithExtendedReasoning(
   enableExtendedReasoning: boolean = false
 ): Promise<ExtendedResponse> {
   try {
-    // Pobierz treść dokumentów z biblioteki, jeśli są
-    let documentsContext = "";
-    if (documentIds.length > 0) {
-      documentsContext = await getDocumentsContent(documentIds);
-    }
+    const context = `📊 ANALIZA DANYCH ZAWODOWYCH:
 
-    // Połącz kontekst Excel i dokumentów z biblioteki
-    let fullContext = `
-## Analizowany arkusz Excel:
-- Tytuł: ${excelMetadata.title || 'Nieznany'}
-- Liczba arkuszy: ${excelMetadata.sheetCount || 'Nieznana'}
-- Liczba wierszy: ${excelMetadata.totalRows || 'Nieznana'}
-- Liczba kolumn: ${excelMetadata.totalColumns || 'Nieznana'}
+**Arkusz:** ${excelMetadata.title || 'Arkusz Excel'}
+**Arkusze:** ${excelMetadata.sheetCount || 'Nieznana liczba'}
+**Wiersze:** ${excelMetadata.totalRows || 'Nieznana liczba'}
+**Kolumny:** ${excelMetadata.totalColumns || 'Nieznana liczba'}
 
-### Zawartość arkusza (fragment):
+**Dane do analizy:**
 \`\`\`
-${excelText.substring(0, 3000)}...
+${excelText.substring(0, 3000)}${excelText.length > 3000 ? '...' : ''}
 \`\`\`
-`;
 
-    if (documentsContext) {
-      fullContext += `\n## Dodatkowe dokumenty referencyjne:\n${documentsContext}`;
-    }
+---
 
-    fullContext += `\n## Na podstawie powyższej zawartości, odpowiedz na pytanie:\n${query}`;
-    
-    if (enableExtendedReasoning) {
-      fullContext += `\n\nPrzedstaw swój proces myślowy w formacie JSON, a następnie podaj finalną odpowiedź.`;
-    }
+💼 **PYTANIE DORADCZE:**
+${query}
+
+📋 **ZADANIE:**
+${enableExtendedReasoning 
+  ? 'Przeanalizuj te dane pod kątem trendów zawodowych i możliwości kariery używając głębokiego procesu myślowego. Przedstaw analizę w formacie JSON, następnie podaj praktyczne wnioski.'
+  : 'Przeanalizuj dane z perspektywy rynku pracy i podaj praktyczne wnioski dla planowania kariery.'}
+
+**Skup się na:**
+- Trendach zawodowych widocznych w danych
+- Możliwościach rozwoju kariery
+- Perspektywach zarobkowych  
+- Rekomendacjach dla planowania kariery`;
     
     return await getOpenAIResponseWithExtendedReasoning(
-      fullContext, 
+      context, 
       [], 
       enableWebSearch, 
       enableExtendedReasoning
     );
     
   } catch (error) {
-    console.error('Błąd podczas analizy Excel z rozszerzonym myśleniem:', error);
+    console.error('Błąd podczas analizy Excel przez doradcę zawodowego:', error);
     return {
-      response: "Przepraszam, wystąpił błąd podczas analizy arkusza Excel. Spróbuj ponownie później."
+      response: "Przepraszam, wystąpił błąd podczas analizy danych. Jako doradca zawodowy polecam sprawdzić format danych i spróbować ponownie."
     };
   }
 }

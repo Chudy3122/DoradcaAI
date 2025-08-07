@@ -1,3 +1,5 @@
+// schema.prisma - ZAKTUALIZOWANY DLA NADPISYWANIA PROFILI
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,11 +16,17 @@ model User {
   password                 String
   role                     String    @default("user")
   webSearchEnabled         Boolean   @default(true)
-  extendedReasoningEnabled Boolean   @default(false)  // 👈 DODAJ TĘ LINIĘ
+  extendedReasoningEnabled Boolean   @default(false)
   createdAt                DateTime  @default(now())
   updatedAt                DateTime  @updatedAt
+  
+  // Istniejące relacje
   chats                    Chat[]
   projects                 Project[]
+  
+  // Nowe relacje dla testów kompetencji
+  competencyTests          CompetencyTest[]
+  careerProfile            UserCareerProfile? // Jeden profil na użytkownika
 }
 
 model Chat {
@@ -41,7 +49,7 @@ model Message {
   chatId    String
   chat      Chat     @relation(fields: [chatId], references: [id])
   metadata  Json?    @default("{}")
-  reasoning Json?    // 👈 DODAJ TĘ LINIĘ
+  reasoning Json?
 }
 
 model Document {
@@ -67,10 +75,10 @@ model KnowledgeCategory {
   description String?
   
   // Nowe pola dla uprawnień i zabezpieczeń
-  isPublic    Boolean             @default(true)  // Czy kategoria jest publiczna
-  password    String?             // Hasło do kategorii (opcjonalne)
-  createdBy   String              // Email twórcy kategorii
-  createdByName String?           // Nazwa twórcy kategorii
+  isPublic    Boolean             @default(true)  
+  password    String?             
+  createdBy   String              
+  createdByName String?           
   
   documents   KnowledgeDocument[]
   createdAt   DateTime            @default(now())
@@ -82,17 +90,17 @@ model KnowledgeCategory {
 model KnowledgeDocument {
   id               String   @id @default(cuid())
   title            String
-  description      String?  // Pole description
-  fileName         String   // Nazwa pliku na serwerze
-  originalFileName String   // Oryginalna nazwa pliku
-  filePath         String   // Ścieżka do pliku
-  fileType         String   // pdf, excel, word, txt
-  fileSize         Int      // Rozmiar w bajtach - pole fileSize
-  content          String?  @db.Text // Wyekstrahowany tekst
+  description      String?  
+  fileName         String   
+  originalFileName String   
+  filePath         String   
+  fileType         String   
+  fileSize         Int      
+  content          String?  @db.Text 
   
-  // Informacje o użytkowniku - pola uploadedBy
-  uploadedBy       String   // Email użytkownika
-  uploadedByName   String?  // Nazwa użytkownika
+  // Informacje o użytkowniku
+  uploadedBy       String   
+  uploadedByName   String?  
   
   // Relacje
   categoryId       String
@@ -126,9 +134,9 @@ model Task {
   name         String
   description  String?
   startDate    DateTime
-  endDate      DateTime
-  progress     Int          @default(0) // 0-100%
-  dependencies String[]     // ID zadań, od których zależy
+  endDate     DateTime
+  progress     Int          @default(0) 
+  dependencies String[]     
   projectId    String
   project      Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
   createdAt    DateTime     @default(now())
@@ -152,3 +160,153 @@ model Milestone {
 
   @@index([projectId])
 }
+
+// ============================================================================
+// MODELE DLA TESTÓW KOMPETENCJI - ZAKTUALIZOWANE
+// ============================================================================
+
+model CompetencyTest {
+  id                 String            @id @default(uuid())
+  userId             String
+  testDate           DateTime          @default(now())
+  completionStatus   CompletionStatus  @default(STARTED)
+  totalQuestions     Int               @default(30)
+  answeredQuestions  Int               @default(0)
+  testDuration       Int?              // w minutach
+  completedAt        DateTime?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  
+  // Relacje
+  user               User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers            TestAnswer[]
+  
+  @@index([userId])
+  @@index([completionStatus])
+}
+
+model TestAnswer {
+  id           String       @id @default(uuid())
+  testId       String
+  questionId   String       
+  questionType QuestionType
+  answerValue  Json         
+  answeredAt   DateTime     @default(now())
+  
+  // Relacje
+  test         CompetencyTest @relation(fields: [testId], references: [id], onDelete: Cascade)
+  
+  @@index([testId])
+  @@index([questionId])
+  @@unique([testId, questionId])
+}
+
+// ZAKTUALIZOWANY: UserCareerProfile z nowymi polami dla edycji profilu
+model UserCareerProfile {
+  id                    String           @id @default(uuid())
+  userId                String           @unique  // Jeden profil na użytkownika
+  
+  // NOWE: Przechowujemy ID ostatniego testu, ale nie jako unique
+  lastTestId            String?          // ID ostatniego testu użytego do analizy
+  
+  // Wyniki analizy AI (z testu - niezmienne)
+  hollandCode           String?          
+  personalityType       String?          
+  competencyScores      Json             @default("{}")
+  careerSuggestions     Json             @default("[]")
+  developmentAreas      Json             @default("[]")
+  aiAnalysis            String           @db.Text @default("")
+  confidenceScore       Float?           
+  
+  // Dane edytowalne przez użytkownika
+  workValues            Json             @default("{}")
+  preferredEnvironment  Json             @default("{}")
+  
+  // NOWE POLA - edytowalne przez użytkownika
+  personalInfo          Json             @default("{}")  // Informacje osobiste
+  experience            Json             @default("{}")  // Doświadczenie zawodowe  
+  goals                 Json             @default("{}")  // Cele zawodowe
+  
+  // Metadane
+  profileGeneratedAt    DateTime         @default(now())
+  lastUpdated           DateTime         @updatedAt
+  isActive              Boolean          @default(true)
+  
+  // Historia testów (opcjonalne - dla śledzenia zmian)
+  testHistory           Json?            @default("[]") // Tablica z ID poprzednich testów
+  
+  // Relacje
+  user                  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+}
+
+model TestQuestion {
+  id              String       @id @default(uuid())
+  questionText    String       @db.Text
+  questionType    QuestionType
+  category        TestCategory
+  subcategory     String?
+  options         Json?        
+  hollandDimension String?     
+  competencyArea  String?      
+  isActive        Boolean      @default(true)
+  orderIndex      Int?         
+  createdAt       DateTime     @default(now())
+  
+  @@index([category])
+  @@index([questionType])
+  @@index([isActive])
+  @@index([orderIndex])
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum CompletionStatus {
+  STARTED
+  IN_PROGRESS  
+  COMPLETED
+  ANALYZED
+  EXPIRED
+}
+
+enum QuestionType {
+  SINGLE_CHOICE    
+  MULTIPLE_CHOICE  
+  SLIDER          
+  RANKING         
+  TEXT_SHORT      
+}
+
+enum TestCategory {
+  INTERESTS       
+  COMPETENCIES    
+  VALUES         
+  ENVIRONMENT    
+  ASPIRATIONS    
+}
+
+// ============================================================================
+// KOMENTARZ: STRUKTURA JSON DLA NOWYCH PÓL
+// ============================================================================
+
+// personalInfo: {
+//   "bio": "string - opis użytkownika",
+//   "currentPosition": "string - obecne stanowisko", 
+//   "yearsOfExperience": number - lata doświadczenia,
+//   "location": "string - lokalizacja"
+// }
+
+// experience: {
+//   "skills": ["string", "string"] - lista umiejętności,
+//   "certifications": ["string", "string"] - certyfikaty i uprawnienia,
+//   "achievements": ["string", "string"] - osiągnięcia zawodowe
+// }
+
+// goals: {
+//   "shortTerm": ["string", "string"] - cele krótkoterminowe (1-2 lata),
+//   "longTerm": ["string", "string"] - cele długoterminowe (3-5 lat),
+//   "preferredIndustries": ["string", "string"] - preferowane branże
+// }

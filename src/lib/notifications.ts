@@ -135,13 +135,13 @@ async function sendDeadlineNotification({
   const daysUntilDeadline = Math.ceil((deadline.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
   
   const mailOptions = {
-    from: `"MarsoftAI" <${process.env.SMTP_USER}>`,
+    from: `"DoradcaAI" <${process.env.SMTP_USER}>`,
     to: email,
     subject: `Przypomnienie: zbliża się termin ${itemType === 'zadanie' ? 'zadania' : 'kamienia milowego'} w projekcie ${projectName}`,
     html: `
       <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
         <div style="background-color: #a3cd39; padding: 10px; color: white; font-weight: bold; font-size: 18px;">
-          MarsoftAI - Przypomnienie o terminie
+          DoradcaAI - Przypomnienie o terminie
         </div>
         <div style="padding: 20px; border: 1px solid #e5e7eb; border-top: none;">
           <p>Witaj ${name},</p>
@@ -151,7 +151,7 @@ async function sendDeadlineNotification({
             <p style="margin: 5px 0 0 0;">Termin: ${deadline.toLocaleDateString('pl-PL')}</p>
             <p style="margin: 5px 0 0 0;">Pozostało dni: ${daysUntilDeadline}</p>
           </div>
-          <p>Zaloguj się do aplikacji MarsoftAI, aby zobaczyć szczegóły i zaktualizować status.</p>
+          <p>Zaloguj się do aplikacji DoradcaAI, aby zobaczyć szczegóły i zaktualizować status.</p>
           <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280;">
             <p>Ta wiadomość została wygenerowana automatycznie. Nie odpowiadaj na nią.</p>
           </div>

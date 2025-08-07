@@ -27,9 +27,9 @@ const MessagePdfExport: React.FC<MessageExportProps> = ({
     // Ustawienie metadanych
     doc.setProperties({
       title: fileName,
-      subject: 'Dokument wygenerowany przez MarsoftAI',
-      author: 'MarsoftAI',
-      creator: 'MarsoftAI'
+      subject: 'Dokument wygenerowany przez DoradcaAI',
+      author: 'DoradcaAI',
+      creator: 'DoradcaAI'
     });
     
     // Definicja marginesów
@@ -41,7 +41,7 @@ const MessagePdfExport: React.FC<MessageExportProps> = ({
     // Nagłówek
     doc.setFontSize(16);
     doc.setTextColor(0, 84, 159); // kolor firmowy
-    doc.text('MarsoftAI - Wygenerowany dokument', pageWidth / 2, margin, { align: 'center' });
+    doc.text('DoradcaAI - Wygenerowany dokument', pageWidth / 2, margin, { align: 'center' });
     
     // Data wygenerowania
     doc.setFontSize(10);
@@ -108,7 +108,7 @@ const MessagePdfExport: React.FC<MessageExportProps> = ({
     // Stopka
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text('© MarsoftAI - dokument wygenerowany automatycznie', pageWidth / 2, pageHeight - 5, { align: 'center' });
+    doc.text('© DoradcaAI - dokument wygenerowany automatycznie', pageWidth / 2, pageHeight - 5, { align: 'center' });
     
     // Zapisz PDF
     doc.save(fileName);

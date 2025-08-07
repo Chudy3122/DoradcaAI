@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     // Pobierz dane z żądania
     const data = await request.json();
     const { 
-      title = 'Dokument MarsoftAI',
+      title = 'Dokument DoradcaAI',
       content,
       chatId,
       addToChat = true,
@@ -75,9 +75,9 @@ export async function POST(request: NextRequest) {
     // Ustawienie metadanych
     doc.setProperties({
       title: title,
-      subject: 'Dokument wygenerowany przez MarsoftAI',
-      author: session.user.name || 'MarsoftAI',
-      creator: 'MarsoftAI'
+      subject: 'Dokument wygenerowany przez DoradcaAI',
+      author: session.user.name || 'DoradcaAI',
+      creator: 'DoradcaAI'
     });
     
     // Definicja marginesów i wymiarów strony
@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
       // Tekst stopki
       doc.setFontSize(8);
       doc.setTextColor(100, 100, 100);
-      const footerText = polishEncoding(`© ${new Date().getFullYear()} MarsoftAI - Dokument wygenerowany automatycznie`);
+      const footerText = polishEncoding(`© ${new Date().getFullYear()} DoradcaAI - Dokument wygenerowany automatycznie`);
       doc.text(footerText, margin, pageHeight - 7);
       
       // Numer strony

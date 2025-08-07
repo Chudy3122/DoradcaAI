@@ -16,8 +16,8 @@ const Header: React.FC = () => {
         <div className="flex items-center">
           <div className="relative h-10 w-40 mr-3">
             <Image 
-              src="/MarsoftAI.png" 
-              alt="MarsoftAI Logo" 
+              src="/DoradcaAI.png" 
+              alt="DoradcaAI Logo" 
               fill
               style={{ objectFit: 'contain' }}
               priority

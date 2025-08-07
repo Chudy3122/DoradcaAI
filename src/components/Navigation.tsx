@@ -18,15 +18,15 @@ export default function Navigation() {
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
                 <Image
-                  src="/MarsoftAI.png"
-                  alt="MarsoftAI Logo"
+                  src="/DoradcaAI.png"
+                  alt="DoradcaAI Logo"
                   width={40}
                   height={40}
                   className="h-10 w-10"
                 />
               </Link>
               <span className="ml-2 text-xl font-semibold text-gray-800">
-                MarsoftAI
+                DoradcaAI
               </span>
             </div>
           </div>

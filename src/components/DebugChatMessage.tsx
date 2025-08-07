@@ -141,8 +141,8 @@ const DebugChatMessage: React.FC<DebugChatMessageProps> = ({ message }) => {
         <div className="w-8 h-8 rounded-full overflow-hidden bg-blue-100 flex-shrink-0 mr-2">
           <div className="relative w-full h-full">
             <Image 
-              src="/MarsoftAI.png" 
-              alt="MarsoftAI" 
+              src="/DoradcaAI.png" 
+              alt="DoradcaAI" 
               fill
               style={{ objectFit: 'cover' }}
             />

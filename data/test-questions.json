@@ -1,0 +1,595 @@
+{
+  "testQuestions": [
+    {
+      "id": "q001",
+      "questionText": "Która z tych czynności sprawiałaby Ci największą satysfakcję w pracy?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "INTERESTS",
+      "subcategory": "holland_primary",
+      "hollandDimension": "mixed",
+      "competencyArea": "career_interests",
+      "orderIndex": 1,
+      "options": [
+        {"value": "R", "text": "Budowanie i montaż konstrukcji własnymi rękami", "hollandCode": "R"},
+        {"value": "I", "text": "Analizowanie planów budowlanych i rozwiązywanie problemów technicznych", "hollandCode": "I"},
+        {"value": "A", "text": "Projektowanie wyglądu i estetyki budynków", "hollandCode": "A"},
+        {"value": "S", "text": "Szkolenie nowych pracowników na budowie", "hollandCode": "S"},
+        {"value": "E", "text": "Zarządzanie całym projektem budowlanym", "hollandCode": "E"},
+        {"value": "C", "text": "Prowadzenie dokumentacji i kontroli jakości", "hollandCode": "C"}
+      ]
+    },
+    {
+      "id": "q002",
+      "questionText": "Który typ projektów budowlanych najbardziej Cię interesuje?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "INTERESTS",
+      "subcategory": "project_type",
+      "hollandDimension": "specialized",
+      "competencyArea": "domain_interest",
+      "orderIndex": 2,
+      "options": [
+        {"value": "residential", "text": "Budownictwo mieszkaniowe (domy, mieszkania)"},
+        {"value": "commercial", "text": "Budynki komercyjne (biura, sklepy, hotele)"},
+        {"value": "industrial", "text": "Obiekty przemysłowe (fabryki, magazyny)"},
+        {"value": "infrastructure", "text": "Infrastruktura (drogi, mosty, tunele)"},
+        {"value": "renovation", "text": "Remonty i modernizacje"},
+        {"value": "green", "text": "Budownictwo ekologiczne i energooszczędne"}
+      ]
+    },
+    {
+      "id": "q003",
+      "questionText": "Uporządkuj materiały budowlane według tego, z którymi najchętniej pracowałbyś (od najbardziej do najmniej preferowanego):",
+      "questionType": "RANKING",
+      "category": "INTERESTS",
+      "subcategory": "materials_preference",
+      "hollandDimension": "R",
+      "competencyArea": "technical_preference",
+      "orderIndex": 3,
+      "options": [
+        {"value": "concrete", "text": "Beton i żelbeton"},
+        {"value": "wood", "text": "Drewno i materiały drewnopodobne"},
+        {"value": "steel", "text": "Stal i konstrukcje metalowe"},
+        {"value": "ceramic", "text": "Ceramika i cegła"},
+        {"value": "glass", "text": "Szkło i przeszklenia"},
+        {"value": "stone", "text": "Kamień naturalny i sztuczny"}
+      ]
+    },
+    {
+      "id": "q004",
+      "questionText": "Jaka skala projektów najbardziej Cię pociąga?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "INTERESTS",
+      "subcategory": "project_scale",
+      "hollandDimension": "mixed",
+      "competencyArea": "work_scope",
+      "orderIndex": 4,
+      "options": [
+        {"value": "small", "text": "Małe remonty i prace wykończeniowe"},
+        {"value": "medium", "text": "Domy jednorodzinne i małe budynki"},
+        {"value": "large", "text": "Wielorodzinne budynki mieszkalne"},
+        {"value": "mega", "text": "Wielkie inwestycje i kompleksy"},
+        {"value": "specialist", "text": "Specjalistyczne obiekty (szpitale, fabryki)"}
+      ]
+    },
+    {
+      "id": "q005",
+      "questionText": "Który etap budowy najbardziej Cię fascynuje?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "INTERESTS",
+      "subcategory": "construction_phase",
+      "hollandDimension": "mixed",
+      "competencyArea": "work_stage",
+      "orderIndex": 5,
+      "options": [
+        {"value": "design", "text": "Projektowanie i planowanie"},
+        {"value": "foundation", "text": "Przygotowanie terenu i fundamenty"},
+        {"value": "structure", "text": "Wznoszenie konstrukcji (stan surowy)"},
+        {"value": "installations", "text": "Instalacje (elektryka, hydraulika)"},
+        {"value": "finishing", "text": "Wykończenia i detale"},
+        {"value": "handover", "text": "Odbiór i przekazanie inwestycji"}
+      ]
+    },
+    {
+      "id": "q006",
+      "questionText": "Które technologie budowlane najbardziej Cię interesują? (możesz wybrać kilka)",
+      "questionType": "MULTIPLE_CHOICE",
+      "category": "INTERESTS",
+      "subcategory": "technology_interest",
+      "hollandDimension": "I",
+      "competencyArea": "tech_innovation",
+      "orderIndex": 6,
+      "options": [
+        {"value": "traditional", "text": "Tradycyjne metody budowlane"},
+        {"value": "prefab", "text": "Prefabrykacja i modularne budownictwo"},
+        {"value": "green", "text": "Technologie ekologiczne (OZE, pasywne domy)"},
+        {"value": "smart", "text": "Inteligentne budynki (BMS, IoT)"},
+        {"value": "automation", "text": "Automatyzacja i robotyzacja"},
+        {"value": "bim", "text": "Technologie BIM i projektowanie 3D"}
+      ]
+    },
+    {
+      "id": "q007",
+      "questionText": "W jakim obszarze budownictwa chciałbyś się specjalizować?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "INTERESTS",
+      "subcategory": "specialization",
+      "hollandDimension": "mixed",
+      "competencyArea": "career_path",
+      "orderIndex": 7,
+      "options": [
+        {"value": "construction", "text": "Konstrukcje i statyka"},
+        {"value": "installations", "text": "Instalacje budowlane"},
+        {"value": "finishing", "text": "Wykończenia i design"},
+        {"value": "management", "text": "Zarządzanie i nadzór"},
+        {"value": "design", "text": "Projektowanie i architektura"},
+        {"value": "inspection", "text": "Kontrola jakości i odbiory"}
+      ]
+    },
+    {
+      "id": "q008",
+      "questionText": "Uporządkuj te motywatory według ważności dla Ciebie w pracy (od najważniejszego do najmniej ważnego):",
+      "questionType": "RANKING",
+      "category": "INTERESTS",
+      "subcategory": "work_inspiration",
+      "hollandDimension": "mixed",
+      "competencyArea": "motivation",
+      "orderIndex": 8,
+      "options": [
+        {"value": "creation", "text": "Tworzenie czegoś trwałego i użytecznego"},
+        {"value": "problem_solving", "text": "Rozwiązywanie skomplikowanych problemów"},
+        {"value": "teamwork", "text": "Współpraca w zgranym zespole"},
+        {"value": "innovation", "text": "Wprowadzanie nowych rozwiązań"},
+        {"value": "precision", "text": "Wykonywanie pracy z najwyższą precyzją"},
+        {"value": "leadership", "text": "Kierowanie ludźmi i projektami"}
+      ]
+    },
+    {
+      "id": "q009",
+      "questionText": "Oceń swoje umiejętności techniczne w pracy z narzędziami i maszynami:",
+      "questionType": "SLIDER",
+      "category": "COMPETENCIES",
+      "subcategory": "technical_skills",
+      "hollandDimension": "R",
+      "competencyArea": "technical_competence",
+      "orderIndex": 9,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Początkujący",
+          "5": "Średni poziom", 
+          "10": "Ekspert"
+        },
+        "description": "Oceń swoje ogólne umiejętności techniczne w pracy z narzędziami, maszynami i sprzętem budowlanym"
+      }
+    },
+    {
+      "id": "q010",
+      "questionText": "Jak oceniasz swoją komunikatywność i umiejętność pracy z ludźmi?",
+      "questionType": "SLIDER",
+      "category": "COMPETENCIES",
+      "subcategory": "communication",
+      "hollandDimension": "S",
+      "competencyArea": "interpersonal_skills",
+      "orderIndex": 10,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Wolę pracować w ciszy",
+          "5": "Komunikuję się gdy trzeba",
+          "10": "Naturalny lider rozmów"
+        },
+        "description": "Oceń swoją umiejętność komunikacji z współpracownikami, klientami i przełożonymi"
+      }
+    },
+    {
+      "id": "q011",
+      "questionText": "Jak oceniają swoje umiejętności przywódcze i zarządcze?",
+      "questionType": "SLIDER",
+      "category": "COMPETENCIES",
+      "subcategory": "leadership",
+      "hollandDimension": "E",
+      "competencyArea": "management_skills",
+      "orderIndex": 11,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Wolę być wykonawcą",
+          "5": "Czasem przejmuję inicjatywę",
+          "10": "Urodzony lider"
+        },
+        "description": "Oceń swoją skłonność do kierowania zespołem i podejmowania decyzji"
+      }
+    },
+    {
+      "id": "q012",
+      "questionText": "Zauważasz błąd w projekcie budowlanym tuż przed rozpoczęciem prac. Co robisz?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "COMPETENCIES",
+      "subcategory": "problem_solving",
+      "hollandDimension": "I",
+      "competencyArea": "initiative",
+      "orderIndex": 12,
+      "options": [
+        {"value": "immediate", "text": "Natychmiast wstrzymuję prace i informuję kierownika"},
+        {"value": "analyze", "text": "Najpierw dokładnie analizuję, czy na pewno to błąd"},
+        {"value": "discuss", "text": "Rozmawiam z zespołem i szukamy rozwiązania"},
+        {"value": "document", "text": "Dokumentuję problem i zgłaszam przez odpowiednie kanały"},
+        {"value": "suggest", "text": "Proponuję konkretne rozwiązanie wraz ze zgłoszeniem"}
+      ]
+    },
+    {
+      "id": "q013",
+      "questionText": "Jak radzisz sobie z pracą pod presją czasu i w stresujących sytuacjach?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "COMPETENCIES",
+      "subcategory": "stress_management",
+      "hollandDimension": "mixed",
+      "competencyArea": "resilience",
+      "orderIndex": 13,
+      "options": [
+        {"value": "thrive", "text": "Presja mobilizuje mnie i pracuję jeszcze efektywniej"},
+        {"value": "manage", "text": "Radzę sobie dobrze, chociaż nie lubię stresu"},
+        {"value": "neutral", "text": "Stres nie wpływa znacząco na jakość mojej pracy"},
+        {"value": "struggle", "text": "Stres utrudnia mi koncentrację i podejmowanie decyzji"},
+        {"value": "avoid", "text": "Staram się unikać stresujących sytuacji"}
+      ]
+    },
+    {
+      "id": "q014",
+      "questionText": "Oceń swoją dokładność i precyzję w wykonywaniu zadań:",
+      "questionType": "SLIDER",
+      "category": "COMPETENCIES",
+      "subcategory": "precision",
+      "hollandDimension": "C",
+      "competencyArea": "quality_focus",
+      "orderIndex": 14,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Preferuję szybkość",
+          "5": "Równowaga szybkość-jakość",
+          "10": "Perfekcjonista"
+        },
+        "description": "Jak ważna jest dla Ciebie precyzja i dokładność w pracy?"
+      }
+    },
+    {
+      "id": "q015",
+      "questionText": "Jak oceniasz swoją kreatywność i zdolność do innowacyjnego myślenia?",
+      "questionType": "SLIDER",
+      "category": "COMPETENCIES",
+      "subcategory": "creativity",
+      "hollandDimension": "A",
+      "competencyArea": "innovation",
+      "orderIndex": 15,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Wolę sprawdzone rozwiązania",
+          "5": "Czasem mam pomysły",
+          "10": "Pełen kreatywnych idei"
+        },
+        "description": "Oceń swoją skłonność do znajdowania niestandardowych rozwiązań"
+      }
+    },
+    {
+      "id": "q016",
+      "questionText": "Jak oceniasz swoją kondycję fizyczną i wytrzymałość?",
+      "questionType": "SLIDER",
+      "category": "COMPETENCIES",
+      "subcategory": "physical_fitness",
+      "hollandDimension": "R",
+      "competencyArea": "physical_capability",
+      "orderIndex": 16,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Preferuję pracę biurową",
+          "5": "Średnia kondycja",
+          "10": "Bardzo dobra kondycja"
+        },
+        "description": "Oceń swoją sprawność fizyczną do pracy wymagającej wysiłku"
+      }
+    },
+    {
+      "id": "q017",
+      "questionText": "Jak radzisz sobie z obliczeniami i problemami matematycznymi?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "COMPETENCIES",
+      "subcategory": "mathematical_skills",
+      "hollandDimension": "I",
+      "competencyArea": "analytical_thinking",
+      "orderIndex": 17,
+      "options": [
+        {"value": "excellent", "text": "Matematyka to moja mocna strona"},
+        {"value": "good", "text": "Dobrze radzę sobie z podstawowymi obliczeniami"},
+        {"value": "average", "text": "Potrafię obliczyć to co potrzebne do pracy"},
+        {"value": "struggle", "text": "Wolę unikać skomplikowanych obliczeń"},
+        {"value": "avoid", "text": "Matematyka nigdy nie była moją mocną stroną"}
+      ]
+    },
+    {
+      "id": "q018",
+      "questionText": "Z jakimi narzędziami i maszynami budowlanymi masz doświadczenie? (wybierz wszystkie które znasz)",
+      "questionType": "MULTIPLE_CHOICE",
+      "category": "COMPETENCIES",
+      "subcategory": "tool_experience",
+      "hollandDimension": "R",
+      "competencyArea": "technical_skills",
+      "orderIndex": 18,
+      "options": [
+        {"value": "hand_tools", "text": "Narzędzia ręczne (młotek, piła, dłuto)"},
+        {"value": "power_tools", "text": "Narzędzia elektryczne (wiertarka, szlifierka)"},
+        {"value": "measuring", "text": "Przyrządy pomiarowe (poziomica, miara, dalmierz)"},
+        {"value": "heavy_machinery", "text": "Ciężki sprzęt (koparka, dźwig, zagęszczarka)"},
+        {"value": "specialized", "text": "Sprzęt specjalistyczny (spawarka, młot wyburzeniowy)"},
+        {"value": "digital", "text": "Narzędzia cyfrowe (CAD, aplikacje budowlane)"}
+      ]
+    },
+    {
+      "id": "q019",
+      "questionText": "Uporządkuj te wartości według ważności dla Ciebie w pracy (od najważniejszej do najmniej ważnej):",
+      "questionType": "RANKING",
+      "category": "VALUES",
+      "subcategory": "work_motivators",
+      "hollandDimension": "mixed",
+      "competencyArea": "motivation",
+      "orderIndex": 19,
+      "options": [
+        {"value": "money", "text": "Wysokie zarobki"},
+        {"value": "stability", "text": "Stabilność zatrudnienia"},
+        {"value": "growth", "text": "Możliwości rozwoju"},
+        {"value": "recognition", "text": "Uznanie i szacunek"},
+        {"value": "autonomy", "text": "Niezależność w działaniu"},
+        {"value": "teamwork", "text": "Praca w zespole"}
+      ]
+    },
+    {
+      "id": "q020",
+      "questionText": "Jak ważna jest dla Ciebie równowaga między życiem zawodowym a prywatnym?",
+      "questionType": "SLIDER",
+      "category": "VALUES",
+      "subcategory": "work_life_balance",
+      "hollandDimension": "mixed",
+      "competencyArea": "life_priorities",
+      "orderIndex": 20,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Praca to priorytet",
+          "5": "Szukam równowagi",
+          "10": "Życie prywatne jest najważniejsze"
+        },
+        "description": "Oceń jak ważne jest dla Ciebie mieć czas na życie poza pracą"
+      }
+    },
+    {
+      "id": "q021",
+      "questionText": "Co wolisz: stabilną pracę czy ciągłe wyzwania?",
+      "questionType": "SLIDER",
+      "category": "VALUES",
+      "subcategory": "stability_vs_challenge",
+      "hollandDimension": "mixed",
+      "competencyArea": "risk_tolerance",
+      "orderIndex": 21,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Rutyna i stabilność",
+          "5": "Trochę zmian",
+          "10": "Ciągłe wyzwania"
+        },
+        "description": "Gdzie widzisz siebie na skali stabilność vs. wyzwania?"
+      }
+    },
+    {
+      "id": "q022",
+      "questionText": "Preferujesz pracę zespołową czy samodzielną?",
+      "questionType": "SLIDER",
+      "category": "VALUES",
+      "subcategory": "teamwork_vs_independence",
+      "hollandDimension": "mixed",
+      "competencyArea": "work_style",
+      "orderIndex": 22,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Samodzielna praca",
+          "5": "Równowaga",
+          "10": "Praca zespołowa"
+        },
+        "description": "Jak lubisz pracować - sam czy z innymi?"
+      }
+    },
+    {
+      "id": "q023",
+      "questionText": "Co jest dla Ciebie ważniejsze: wysokie zarobki czy pasja do pracy?",
+      "questionType": "SLIDER",
+      "category": "VALUES",
+      "subcategory": "money_vs_passion",
+      "hollandDimension": "mixed",
+      "competencyArea": "career_priorities",
+      "orderIndex": 23,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Pieniądze najważniejsze",
+          "5": "Oba równie ważne",
+          "10": "Pasja najważniejsza"
+        },
+        "description": "Gdzie stawiasz priorytet: zarobki czy satysfakcja z pracy?"
+      }
+    },
+    {
+      "id": "q024",
+      "questionText": "Jakie formy rozwoju zawodowego najbardziej Cię interesują? (możesz wybrać kilka)",
+      "questionType": "MULTIPLE_CHOICE",
+      "category": "VALUES",
+      "subcategory": "development_preferences",
+      "hollandDimension": "mixed",
+      "competencyArea": "growth_mindset",
+      "orderIndex": 24,
+      "options": [
+        {"value": "courses", "text": "Kursy i szkolenia zawodowe"},
+        {"value": "certifications", "text": "Certyfikaty i uprawnienia"},
+        {"value": "higher_education", "text": "Studia i podyplomowe"},
+        {"value": "mentoring", "text": "Mentoring i coaching"},
+        {"value": "conferences", "text": "Konferencje i targi branżowe"},
+        {"value": "self_learning", "text": "Samodzielna nauka i praktyka"}
+      ]
+    },
+    {
+      "id": "q025",
+      "questionText": "W jakim środowisku pracy czułbyś się najlepiej?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "ENVIRONMENT",
+      "subcategory": "work_location",
+      "hollandDimension": "mixed",
+      "competencyArea": "environmental_preference",
+      "orderIndex": 25,
+      "options": [
+        {"value": "outdoor", "text": "Na placu budowy, na świeżym powietrzu"},
+        {"value": "workshop", "text": "W warsztacie lub hali produkcyjnej"},
+        {"value": "office", "text": "W biurze projektowym z komputerem"},
+        {"value": "mixed", "text": "Połączenie biura i terenu"},
+        {"value": "client_sites", "text": "U klientów, w różnych lokalizacjach"},
+        {"value": "home_office", "text": "Praca zdalna z domu"}
+      ]
+    },
+    {
+      "id": "q026",
+      "questionText": "Jaka wielkość zespołu jest dla Ciebie optymalna?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "ENVIRONMENT",
+      "subcategory": "team_size",
+      "hollandDimension": "S",
+      "competencyArea": "social_preference",
+      "orderIndex": 26,
+      "options": [
+        {"value": "solo", "text": "Praca indywidualna"},
+        {"value": "small", "text": "Mały zespół (2-5 osób)"},
+        {"value": "medium", "text": "Średni zespół (6-15 osób)"},
+        {"value": "large", "text": "Duży zespół (16-50 osób)"},
+        {"value": "very_large", "text": "Bardzo duży zespół (50+ osób)"}
+      ]
+    },
+    {
+      "id": "q027",
+      "questionText": "Jaki rozkład dnia pracy najbardziej Ci odpowiada?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "ENVIRONMENT",
+      "subcategory": "work_schedule",
+      "hollandDimension": "mixed",
+      "competencyArea": "time_preference",
+      "orderIndex": 27,
+      "options": [
+        {"value": "early", "text": "Wczesny start (6:00-14:00)"},
+        {"value": "standard", "text": "Standardowe godziny (8:00-16:00)"},
+        {"value": "flexible", "text": "Elastyczne godziny pracy"},
+        {"value": "shifts", "text": "Praca zmianowa"},
+        {"value": "project_based", "text": "W zależności od potrzeb projektu"}
+      ]
+    },
+    {
+      "id": "q028",
+      "questionText": "Jak często jesteś gotów podróżować służbowo?",
+      "questionType": "SLIDER",
+      "category": "ENVIRONMENT",
+      "subcategory": "travel_willingness",
+      "hollandDimension": "mixed",
+      "competencyArea": "mobility",
+      "orderIndex": 28,
+      "options": {
+        "min": 1,
+        "max": 10,
+        "labels": {
+          "1": "Tylko lokalna praca",
+          "5": "Okazjonalne wyjazdy",
+          "10": "Częste podróże OK"
+        },
+        "description": "Oceń swoją gotowość do podróży służbowych i pracy w różnych lokalizacjach"
+      }
+    },
+    {
+      "id": "q029",
+      "questionText": "Jak często chciałbyś uczyć się nowych rzeczy w pracy?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "ASPIRATIONS",
+      "subcategory": "learning_motivation",
+      "hollandDimension": "mixed",
+      "competencyArea": "growth_mindset",
+      "orderIndex": 29,
+      "options": [
+        {"value": "constant", "text": "Cały czas - uwielbiam nowe wyzwania"},
+        {"value": "regular", "text": "Regularnie, ale w kontrolowanym tempie"},
+        {"value": "periodic", "text": "Od czasu do czasu, gdy jest potrzeba"},
+        {"value": "minimal", "text": "Wolę opanować to, co już umiem"},
+        {"value": "reluctant", "text": "Nie lubię zmian, preferuję rutynę"}
+      ]
+    },
+    {
+      "id": "q030",
+      "questionText": "Jakie są Twoje główne cele zawodowe na najbliższe 5 lat?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "ASPIRATIONS",
+      "subcategory": "career_goals",
+      "hollandDimension": "mixed",
+      "competencyArea": "ambition",
+      "orderIndex": 30,
+      "options": [
+        {"value": "specialist", "text": "Zostać ekspertem w swojej dziedzinie"},
+        {"value": "manager", "text": "Awansować na stanowisko kierownicze"},
+        {"value": "entrepreneur", "text": "Założyć własną firmę budowlaną"},
+        {"value": "stable", "text": "Znaleźć stabilną, dobrze płatną pracę"},
+        {"value": "education", "text": "Podnieść kwalifikacje i wykształcenie"},
+        {"value": "exploring", "text": "Jeszcze nie wiem, odkrywam możliwości"}
+      ]
+    },
+    {
+      "id": "q031",
+      "questionText": "Jakie masz wykształcenie?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "ASPIRATIONS",
+      "subcategory": "education_level",
+      "hollandDimension": "mixed",
+      "competencyArea": "background",
+      "orderIndex": 31,
+      "options": [
+        {"value": "primary", "text": "Podstawowe"},
+        {"value": "vocational", "text": "Zawodowe/techniczne"},
+        {"value": "secondary", "text": "Średnie ogólnokształcące"},
+        {"value": "bachelor", "text": "Licencjat/Inżynier"},
+        {"value": "master", "text": "Magister"},
+        {"value": "other", "text": "Inne/w trakcie nauki"}
+      ]
+    },
+    {
+      "id": "q032",
+      "questionText": "Jakie masz doświadczenie w branży budowlanej?",
+      "questionType": "SINGLE_CHOICE",
+      "category": "ASPIRATIONS",
+      "subcategory": "experience_level",
+      "hollandDimension": "mixed",
+      "competencyArea": "background",
+      "orderIndex": 32,
+      "options": [
+        {"value": "none", "text": "Brak doświadczenia - dopiero zaczynam"},
+        {"value": "basic", "text": "Podstawowe (do 2 lat)"},
+        {"value": "intermediate", "text": "Średnie (2-5 lat)"},
+        {"value": "advanced", "text": "Zaawansowane (5-10 lat)"},
+        {"value": "expert", "text": "Ekspert (ponad 10 lat)"},
+        {"value": "related", "text": "Doświadczenie w pokrewnych branżach"}
+      ]
+    }
+  ]
+}

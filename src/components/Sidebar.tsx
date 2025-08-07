@@ -29,8 +29,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
       <div className="p-6 border-b border-gray-200">
         <div className="relative h-10 w-40 mx-auto">
           <Image 
-            src="/MarsoftAI.png" 
-            alt="MarsoftAI" 
+            src="/DoradcaAI.png" 
+            alt="DoradcaAI" 
             fill
             style={{ objectFit: 'contain' }}
             priority
